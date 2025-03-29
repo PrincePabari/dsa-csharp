@@ -1,4 +1,4 @@
-﻿using dsa_core;
+﻿using dsa_core.DataStructure;
 
 namespace dsa_console
 {

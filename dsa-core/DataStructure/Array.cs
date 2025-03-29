@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 
-namespace dsa_core
+namespace dsa_core.DataStructure
 {
     public class Array<T> : IEnumerable<T>
     {
@@ -36,7 +36,7 @@ namespace dsa_core
 
         public Array()
         {
-            this.array = new T[defaultCapacity];
+            array = new T[defaultCapacity];
         }
 
         public Array(int capacity)

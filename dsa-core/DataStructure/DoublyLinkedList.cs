@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dsa_core.DataStructure
 {
-    public class DoublyLinkedList<T> : IEnumerator<T>
+    public class DoublyLinkedList<T> : IEnumerable<T>
     {
 
         private int size = 0;
@@ -216,7 +216,7 @@ namespace dsa_core.DataStructure
 
             if (obj == null)
             {
-                for (trav = head; trav!=null; trav = trav.Next)
+                for (trav = head; trav != null; trav = trav.Next)
                 {
                     if (trav.Data == null)
                     {
@@ -272,23 +272,39 @@ namespace dsa_core.DataStructure
             return indexOf(obj) != -1;
         }
 
-        public T Current => throw new NotImplementedException();
-
-        object IEnumerator.Current => Current;
-
-        public void Dispose()
+        public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            Node<T> trav = head;
+
+            while (trav != null)
+            {
+                yield return trav.Data;
+                trav = trav.Next;
+            }
         }
 
-        public bool MoveNext()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
-        public void Reset()
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[ ");
+
+            Node<T> trav = head;
+            while (trav != null)
+            {
+                sb.Append(trav.Data);
+                if (trav.Next != null)
+                {
+                    sb.Append(", ");
+                }
+                trav = trav.Next;
+            }
+            sb.Append(" ]");
+            return sb.ToString();
         }
     }
 }
